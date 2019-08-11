@@ -146,7 +146,7 @@ def test_bake_selecting_license(cookies):
     for license, target_string in license_strings.items():
         with bake_in_temp_dir(cookies, extra_context={'open_source_license': license}) as result:
             assert target_string in result.project.join('LICENSE').read()
-            assert license in result.project.join('setup.cfg').read()
+            assert '    ' + license in result.project.join('setup.cfg').read()
 
 
 def test_bake_not_open_source(cookies):
